@@ -47,13 +47,11 @@ class MainActivity : AppCompatActivity() {
                                         val userObj = response.getJSONObject(i)
 
                                         var showName = userObj.getString("name")
-                                        var showUserName = userObj.getString("username")
                                         var showEmail = userObj.getString("email")
 
                                         var user = User()
 
                                         user.name = showName
-                                        user.username = showUserName
                                         user.email = showEmail
 
                                         arrayList!!.add(user)

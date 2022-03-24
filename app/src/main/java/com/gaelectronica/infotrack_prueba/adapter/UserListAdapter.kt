@@ -1,12 +1,14 @@
 package com.gaelectronica.infotrack_prueba.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.gaelectronica.infotrack_prueba.R
+import com.gaelectronica.infotrack_prueba.SecondActivity
 import com.gaelectronica.infotrack_prueba.model.User
 
 class UserListAdapter (private val list: ArrayList<User>, private val context: Context):
@@ -31,13 +33,17 @@ class UserListAdapter (private val list: ArrayList<User>, private val context: C
 
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         var name = itemView.findViewById<TextView>(R.id.txtName)
-        var username = itemView.findViewById<TextView>(R.id.txtUserName)
         var email = itemView.findViewById<TextView>(R.id.txtEmail)
 
         fun bindView(user:User) {
             name.text = user.name
-            username.text = user.username
             email.text = user.email
+
+            itemView.setOnClickListener {
+                var intent = Intent(context, SecondActivity::class.java )
+                intent.putExtra("name", user.name)
+                context.startActivity(intent)
+            }
         }
     }
 }
